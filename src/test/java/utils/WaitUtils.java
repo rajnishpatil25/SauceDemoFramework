@@ -1,7 +1,6 @@
 package utils;
 
 import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,22 +8,22 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitUtils {
-	WebDriver driver;
-	WebDriverWait wait;
 
-	public WaitUtils(WebDriver driver) {
-		this.driver = driver;
-		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	}
+    private WebDriver driver;
+    private static final int TIMEOUT = 10;
 
-	public WebElement waitForElementVisible(By locator) {
-		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-	}
+    public WaitUtils(WebDriver driver) {
+        this.driver = driver;
+        // No shared WebDriverWait - fresh instance per call
+    }
 
-	public WebElement waitForElementClickable(By Locator) {
-		return wait.until(ExpectedConditions.elementToBeClickable(Locator));
+    public WebElement waitForElementVisible(By locator) {
+        return new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
+                   .until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
 
-	}
-
-
+    public WebElement waitForElementClickable(By locator) {
+        return new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT))
+                   .until(ExpectedConditions.elementToBeClickable(locator));
+    }
 }
