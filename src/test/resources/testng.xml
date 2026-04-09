@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="TestSuite" parallel="none" thread-count="1">
+
+    <parameter name="browser" value="${browser}"/>
+
+    <test name="SauceDemoTests">
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test>
+
+</suite>
