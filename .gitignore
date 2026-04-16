@@ -1,9 +1,0 @@
-target/
-reports/
-screenshots/
-*.class
-.classpath
-.project
-.settings/
-*.log
-.idea/
